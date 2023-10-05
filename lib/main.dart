@@ -12,6 +12,13 @@ class ExpensesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      theme: ThemeData(
+        primaryColor: Colors.green,
+        colorScheme: ColorScheme.fromSwatch(
+          accentColor: Colors.amber,
+        ),
+        fontFamily: "Quicksand",
+      ),
     );
   }
 }
@@ -24,20 +31,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>{
 
-  final _transactions = [
-    Transaction(
-      id: "t1",
-      title: "Cinema",
-      value: 15.90,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Água",
-      value: 60.00,
-      date: DateTime.now(),
-    )
-  ];
+  final List<Transaction> _transactions = [];
 
   _addTransaction(String title, double value){
     final newTransaction = Transaction(
@@ -67,7 +61,15 @@ class _MyHomePageState extends State<MyHomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Despesas Pessoais"),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          "Despesas Pessoais",
+          style: TextStyle(
+            fontFamily: "OpenSans",
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),  
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
